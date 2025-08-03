@@ -68,9 +68,26 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, Producto $id)
     {
-        //
+         $producto = Producto::find($id);
+
+        if (!$producto) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:150',
+            'precio' => 'required|numeric|min:0',
+            'marca_id' => 'required|exists:marcas,id',
+        ]);
+
+        $producto->update($validated);
+
+        return response()->json([
+            'message' => 'Producto actualizado exitosamente',
+            'producto' => $producto
+        ]);
     }
 
     /**
