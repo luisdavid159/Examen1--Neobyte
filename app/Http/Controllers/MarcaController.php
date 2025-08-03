@@ -65,9 +65,24 @@ class MarcaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, Marca $id)
     {
-        //
+         $marca = Marca::find($id);
+
+        if (!$marca) {
+            return response()->json(['message' => 'Marca no encontrada'], 404);
+        }
+
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:100|unique:marcas,nombre,' . $id,
+        ]);
+
+        $marca->update($validated);
+
+        return response()->json([
+            'message' => 'Marca actualizada exitosamente',
+            'marca' => $marca
+        ]);
     }
 
     /**
