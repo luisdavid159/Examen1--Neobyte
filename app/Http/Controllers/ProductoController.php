@@ -46,9 +46,15 @@ class ProductoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Producto $producto)
+    public function show(Producto $id)
     {
-        //
+        $producto = Producto::with('marca')->find($id);
+
+        if (!$producto) {
+            return response()->json(['message' => 'Producto no encontrado'], 404);
+        }
+
+        return response()->json($producto);
     }
 
     /**
