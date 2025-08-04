@@ -12,7 +12,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-                return response()->json(Producto::with('marca')->get());
+        return response()->json(Producto::with('marca')->get());
 
     }
 
@@ -46,7 +46,7 @@ class ProductoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Producto $id)
+    public function show($id)
     {
         $producto = Producto::with('marca')->find($id);
 
@@ -68,7 +68,7 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $id)
+    public function update(Request $request,$id)
     {
          $producto = Producto::find($id);
 

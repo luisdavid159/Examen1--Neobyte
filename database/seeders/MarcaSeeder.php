@@ -14,6 +14,6 @@ class MarcaSeeder extends Seeder
     {
         Marca::create(['nombre' => 'Samsung']);
         Marca::create(['nombre' => 'Apple']);
-        Marca::create(['nombre' => 'Huawei']);
+        Marca::create(['nombre' => 'Sony']);
     }
 }

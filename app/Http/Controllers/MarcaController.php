@@ -12,7 +12,7 @@ class MarcaController extends Controller
      */
     public function index()
     {
-         return response()->json(Marca::all());
+        return response()->json(Marca::all());
     }
 
     /**
@@ -43,7 +43,7 @@ class MarcaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Marca $id)
+    public function show($id)
     {
          $marca = Marca::find($id);
 
@@ -65,7 +65,7 @@ class MarcaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Marca $id)
+    public function update(Request $request,$id)
     {
          $marca = Marca::find($id);
 
@@ -88,7 +88,7 @@ class MarcaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Marca $id)
+    public function destroy($id)
     {
          $marca = Marca::find($id);
 
